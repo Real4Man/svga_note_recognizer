@@ -21,7 +21,10 @@ module note_grid
     
 );
 
-logic [9:0]     line_x[7] = { 96, 128, 160, 192, 224, 256, 288 };
+//int      line_x[7] = { 96, 128, 160, 192, 224, 256, 288 };
+const int line_0 = 96;
+const int line_1 = 128;
+const int line_2 = 160;
 
 logic [3:0]         color;
 
@@ -32,7 +35,7 @@ assign vga_g = color;
 assign color = 
  ( 
     
-    y[9:2]==line_x[0][9:2] 
+    y[9:2]==line_0[9:2] 
 
  ) ?   4'b0000 : 4'b1111;
 

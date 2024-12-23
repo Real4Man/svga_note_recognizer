@@ -199,7 +199,7 @@ pll50_65 pll
         .key           ( ~ KEY_SW        ),
         .sw            ( ~ KEY_SW        ),
 
-        //.led           (   lab_led       ),
+        .led           (   lab_led       ),
 
         .abcdefgh      (   abcdefgh      ),
         .digit         (   digit         ),
@@ -214,15 +214,17 @@ pll50_65 pll
         .uart_rx       (   UART_RXD      ),
         .uart_tx       (   UART_TXD      ),
 
-        .mic           (   mic           ),
-        .sound         (   sound         ),
-        .mic_we        (   mic_we        ),
+        // .mic           (   mic           ),
+        // .sound         (   sound         ),
+        // .mic_we        (   mic_we        ),
 
         `ifdef USE_SDRAM_PINS_AS_GPIO
-            .gpio ( PSEUDO_GPIO_USING_SDRAM_PINS )
+            .gpio ( PSEUDO_GPIO_USING_SDRAM_PINS ),
         `elsif USE_LCD_AS_GPIO
-            .gpio ({ LCD_RS, LCD_RW, LCD_E, LCD_D })
+            .gpio ({ LCD_RS, LCD_RW, LCD_E, LCD_D }),
         `endif
+
+            .*   // mic, sound, mc_we
     );
 
     //------------------------------------------------------------------------
@@ -231,17 +233,6 @@ pll50_65 pll
 
     assign SEG       = ~ abcdefgh;
     assign DIG       = ~ digit;
-
-    logic [24:0]        tmp_cnt;
-
-    always @(posedge clk65 ) begin
-        if( rst )
-          tmp_cnt <= '0;
-        else
-          tmp_cnt <= tmp_cnt + 1; 
-    end
-
-    assign lab_led = tmp_cnt[24:21];
 
     //------------------------------------------------------------------------
 
