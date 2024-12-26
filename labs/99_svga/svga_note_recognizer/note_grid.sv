@@ -25,6 +25,10 @@ module note_grid
 const int line_0 = 96;
 const int line_1 = 128;
 const int line_2 = 160;
+const int line_3 = 192;
+const int line_4 = 224;
+const int line_5 = 256;
+const int line_6 = 288;
 
 logic [3:0]         color;
 
@@ -35,8 +39,14 @@ assign vga_g = color;
 assign color = 
  ( 
     
-    y[9:2]==line_0[9:2] 
-
+       y[9:1]==line_0[9:1] 
+    || y[9:1]==line_1[9:1]
+    || y[9:1]==line_2[9:1]
+    || y[9:1]==line_3[9:1]
+    || y[9:1]==line_4[9:1]
+    || y[9:1]==line_5[9:1]
+    || y[9:1]==line_6[9:1]
+    
  ) ?   4'b0000 : 4'b1111;
 
 endmodule

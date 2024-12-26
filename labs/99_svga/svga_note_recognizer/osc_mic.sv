@@ -1,4 +1,5 @@
 
+
 `default_nettype none 
 
 module osc_mic
@@ -117,14 +118,14 @@ always_comb begin
     val_pos_y[7:0] = val_y[7:0];
     val_pos_y[9:8] = '0;
 
-    pos_y = 384-y;
-    neg_y = y-384;
-    // if( y==(384-val_y))
+    pos_y = 580-y;
+    neg_y = y-580;
+    // if( y==(580-val_y))
     //     osc_light = 1;
     // else
     //     osc_light = 0;
     if( val_y[8] ) begin
-        if( y>384 && y<384+256 ) begin
+        if( y>580 && y<580+128 ) begin
             if( val_neg_y <= neg_y[9:0] )
                 osc_light = 0;
             else
@@ -134,7 +135,7 @@ always_comb begin
         end
 
     end else begin
-        if( y>(384-256) && y<=384 ) begin
+        if( y>(580-128) && y<=580g ) begin
             if( val_pos_y[7:0]<=pos_y[9:0])
                 osc_light = 0;
             else
