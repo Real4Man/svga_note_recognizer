@@ -23,12 +23,12 @@ module note_grid
 
 //int      line_x[7] = { 96, 128, 160, 192, 224, 256, 288 };
 const int line_0 = 96;
-const int line_1 = 128;
-const int line_2 = 160;
-const int line_3 = 192;
-const int line_4 = 224;
-const int line_5 = 256;
-const int line_6 = 288;
+const int line_1 = 112;
+const int line_2 = 128;
+const int line_3 = 144;
+const int line_4 = 160;
+const int line_5 = 176;
+const int line_6 = 192;
 
 logic [3:0]         color;
 

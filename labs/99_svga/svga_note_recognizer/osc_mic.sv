@@ -135,7 +135,7 @@ always_comb begin
         end
 
     end else begin
-        if( y>(580-128) && y<=580g ) begin
+        if( y>(580-128) && y<=580 ) begin
             if( val_pos_y[7:0]<=pos_y[9:0])
                 osc_light = 0;
             else
