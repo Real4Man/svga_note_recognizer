@@ -9,5 +9,6 @@ xsim_coverage_report
 *.log
 *.wdb
 *.vcd
+global.txt
 
 
