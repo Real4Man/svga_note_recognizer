@@ -4,9 +4,9 @@
 module sim_inn441
 #(
     parameter int       sck_period=320,  //! период тактового сигнала sck, [ns]
-    parameter int       s_freq_100[5],   //! значения частоты Гц*100
-    parameter int       s_time_ms[5],    //! время в мс когда начинают действовать параметры формирования
-    parameter int       s_ampl[5],       //! амплитутда, максимальное значение 2^22-1
+    parameter int       s_freq_100[8],   //! значения частоты Гц*100
+    parameter int       s_time_ms[8],    //! время в мс когда начинают действовать параметры формирования
+    parameter int       s_ampl[8],       //! амплитутда, максимальное значение 2^22-1
     parameter int       s_cnt=0
 
 )
