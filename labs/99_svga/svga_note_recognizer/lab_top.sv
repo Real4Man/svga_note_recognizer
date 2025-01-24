@@ -91,9 +91,9 @@ module lab_top
     logic               rstp;
     logic               vsync;
 
-    logic [15:0]        mic12;
+    logic [15:0]        mic16;
 
-    assign mic12 = mic [23:8];
+    assign mic16 = mic [23:8];
     
     assign pixel_x = x;
     assign pixel_y = y;
@@ -147,7 +147,7 @@ module lab_top
         .clk            (   clk         ),
         .reset_p        (   rstp        ),
     
-        .data           (   mic12       ),
+        .data           (   mic16       ),
         .data_we        (   mic_we      ),
     
         .threshold      (   16'h0010    ),
@@ -161,5 +161,38 @@ module lab_top
         .vsync          (   vsync      ),
         .state          (   osc_state   )
     );    
+
+
+
+logic [15:0] prev_value;
+logic [19:0] counter;
+logic [19:0] distance;
+
+localparam [15:0] threshold = 16'h1100;
+
+always_ff @ (posedge clk)
+    if( rstp )
+    begin
+        prev_value <= #1 16'h0;
+        counter    <= #1 20'h0;
+        distance   <= #1 20'h0;
+    end
+    else
+    begin
+
+        if( mic_we ) begin
+            prev_value  <= #1 mic16;
+
+            if (  mic16 >= threshold  &&  prev_value <  threshold ) begin
+                distance <= counter;
+                counter  <= 20'h0;
+            end else begin
+                if( ~counter[19] )
+                    counter <= counter + 20'h1;    
+            end
+            
+        end 
+
+    end    
 
 endmodule

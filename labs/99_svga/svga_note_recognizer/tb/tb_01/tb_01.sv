@@ -189,6 +189,30 @@ logic           mic_we;
 
 logic [15:0]        mic16;
 
+logic               slow_clk;
+logic [3:0]         key;
+logic [3:0]         sw;
+logic [3:0]         led;
+
+// A dynamic seven-segment displa
+
+logic [7:0]         abcdefgh;
+logic [9:0]         digit;
+
+logic [10:0]        x;
+logic [9:0]         y;
+
+logic [3:0]         red;
+logic [3:0]         green;
+logic [3:0]         blue;
+logic [15:0]        sound;
+logic               uart_rx;
+logic               uart_tx;
+
+// General-purpose Input/Output
+
+wire [99:0]         gpio;
+
 assign mic16 = mic [23:8];
 
 
@@ -243,4 +267,58 @@ i_microphone
     .value_we   (     mic_we      )
 );
    
+
+lab_top
+# (
+    .clk_mhz        (   65   ),
+    .w_key          (   4    ),
+    .w_sw           (   8    ),
+    .w_led          (   8    ),
+    .w_digit        (   8    ),
+    .w_gpio         (   100  ),
+    .screen_width   (   1024 ),
+    .screen_height  (   768  ),
+    .w_red          (   4    ),
+    .w_green        (   4    ),
+    .w_blue         (   4    )
+)
+lab_top
+(
+    .clk,
+    .slow_clk,
+    .rst        (   ~reset_n   ),
+
+    // Keys, switches, LEDs
+
+    .key,
+    .sw,
+    .led,
+
+    // A dynamic seven-segment display
+
+    .abcdefgh,
+    .digit,
+
+    // Graphics
+
+    .x,
+    .y,
+
+    .red,
+    .green,
+    .blue,
+
+    // Microphone, sound output and UART
+
+    .mic,
+    .sound,
+    .mic_we,
+
+    .uart_rx,
+    .uart_tx,
+
+    // General-purpose Input/Output
+    .gpio
+);
+
 endmodule
