@@ -195,4 +195,103 @@ always_ff @ (posedge clk)
 
     end    
 
+logic [2:0]         d0_stp;
+logic [4:0]         d0_cnt_high;
+logic [4:0]         d0_cnt_low;
+logic [15:0]        d0_counter;
+logic [15:0]        d0_distanse;
+logic               d0_distance_step;
+
+logic [2:0]         n_d0_stp;
+logic [4:0]         n_d0_cnt_high;
+logic [4:0]         n_d0_cnt_low;
+logic [15:0]        n_d0_counter;
+logic [15:0]        n_d0_distanse;
+logic               n_d0_distance_step;
+
+localparam logic[15:0]  threshold_low  = -16'd120;
+localparam logic[15:0]  threshold_high =  16'd120;
+
+always_comb begin   : pr_d0_comb
+    
+    n_d0_stp = d0_stp;
+    n_d0_counter = d0_counter;
+    n_d0_distanse = d0_distanse;
+    n_d0_cnt_high = d0_cnt_high;
+    n_d0_cnt_low  = d0_cnt_low;
+
+    n_d0_distance_step = 0;
+
+    if( mic_we )
+        n_d0_counter++;
+
+    case( d0_stp )
+
+    0: begin // wait for low value
+
+        n_d0_cnt_high = '0;
+
+        if( mic_we ) begin
+            if( $signed( mic16) < $signed(threshold_low) ) begin
+                n_d0_cnt_low++;
+            end else begin
+                n_d0_cnt_low = 0;
+            end
+
+            if( n_d0_cnt_low[4] )
+                n_d0_stp = 1;
+
+
+        end
+        
+    end
+
+    1: begin    // wait for high value
+
+        n_d0_cnt_low = '0;
+
+        if( mic_we ) begin
+            if( $signed(mic16) > $signed(threshold_high) ) begin
+                n_d0_cnt_high++;
+            end else begin
+                n_d0_cnt_high = '0;
+            end
+
+            if( n_d0_cnt_high[4] )
+                n_d0_stp = 2;
+        end
+        
+    end
+
+    2: begin
+        n_d0_distanse = d0_counter;
+        n_d0_distance_step = 1;
+        n_d0_counter = '0;
+        n_d0_stp = 0;
+    end
+
+    endcase
+
+
+end
+
+always_ff @(posedge clk) begin  : pr_d0_ff
+   
+    d0_distance_step <= #1 n_d0_distance_step;
+    
+    if( rstp ) begin
+        d0_stp <= #1 '0;
+        d0_counter <= #1 '0;
+        d0_distanse <= #1 '0;
+        d0_cnt_high <= #1 '0;
+        d0_cnt_low  <= #1 '0;
+    end else begin
+        d0_stp <= #1 n_d0_stp;
+        d0_counter <= #1 n_d0_counter;
+        d0_distanse <= #1 n_d0_distanse;
+        d0_cnt_high <= #1 n_d0_cnt_high;
+        d0_cnt_low  <= #1 n_d0_cnt_low;
+    end
+end
+
 endmodule

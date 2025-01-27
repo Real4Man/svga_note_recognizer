@@ -233,9 +233,9 @@ localparam integer  freq_100_C  = 26163,
 // localparam int      s_time_ms[5]= { 1, 45, 90, 135, 180 };
 // localparam int      s_ampl[5]= { 30000, 20000, 31000, 22000, 26000 };
 // localparam int      s_cnt=5;
-localparam int      s_freq_100[8]= { freq_100_C, 100, freq_100_D, 100, freq_100_E, 100, freq_100_F, 100 };
-localparam int      s_time_ms[8]= {  1,          61,  63,         123, 125,        185, 187,        247 };
-localparam int      s_ampl[8]= {     30000,      0,   20000,      0,   10000,      0,   10000,      0 };
+localparam int      s_freq_100[8]= { freq_100_B, 1000, freq_100_D, 1000, freq_100_E, 1000, freq_100_F, 100 };
+localparam int      s_time_ms[8]= {  1,          61,   63,         123,  125,        185,  187,        247 };
+localparam int      s_ampl[8]= {     30000,      0,    20000,      0,    31000,      0,    25000,      0 };
 localparam int      s_cnt=8;
 sim_inn441 
 #(
