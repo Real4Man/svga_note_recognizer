@@ -294,4 +294,159 @@ always_ff @(posedge clk) begin  : pr_d0_ff
     end
 end
 
+
+logic [3:0]         d1_stp;
+logic [9:0]         d1_temp_counter;
+logic               d1_16_step;
+logic               d1_8_step;
+logic               d1_4_step;
+logic               d1_2_step;
+logic               d1_1_step;
+logic               d1_8_flag;
+logic               d1_4_flag;
+logic               d1_2_flag;
+logic               d1_1_flag;
+
+logic [3:0]         n_d1_stp;
+logic [9:0]         n_d1_temp_counter;
+logic               n_d1_16_step;
+logic               n_d1_8_step;
+logic               n_d1_4_step;
+logic               n_d1_2_step;
+logic               n_d1_1_step;
+logic               n_d1_8_flag;
+logic               n_d1_4_flag;
+logic               n_d1_2_flag;
+logic               n_d1_1_flag;
+
+localparam              mic_sample_rate = 48835; // Частота следования отсчётов с микрофона
+localparam              temp_period = 240;       // темп - число ударов в минуту
+localparam [9:0]       temp_1_16_cnt = 763;     // число отсчётов микрофона в 1/16 такта
+
+localparam [15:0]       start_level = 16'd80;
+
+
+logic               d1_rstp;
+
+assign d1_rstp = rstp;  // TODO: надо как то сбрасывать по клашише
+
+always_comb begin   : pr_d1_comb
+    
+
+    n_d1_stp      = d1_stp;
+    n_d1_temp_counter = d1_temp_counter;
+    n_d1_8_flag   = d1_8_flag;
+    n_d1_4_flag   = d1_4_flag;
+    n_d1_2_flag   = d1_2_flag;
+    n_d1_1_flag   = d1_1_flag;
+
+
+    n_d1_16_step  = 0;
+    n_d1_8_step   = 0;
+    n_d1_4_step   = 0;
+    n_d1_2_step   = 0;
+    n_d1_1_step   = 0;
+
+    case( d1_stp )
+
+    0: begin    // wait for start level
+
+        n_d1_temp_counter = '0;
+
+        if( mic_we ) begin
+            if( $signed(mic16) >= $signed(start_level) )
+                n_d1_stp = 1;
+        end
+
+        
+    end
+
+    endcase
+
+    if( d1_stp ) begin
+
+        if( mic_we )
+            n_d1_temp_counter++;
+
+        if( d1_temp_counter == temp_1_16_cnt ) begin
+            n_d1_16_step = 1;
+            n_d1_temp_counter = '0;
+        end
+
+        if( d1_16_step ) begin
+
+            if( d1_8_flag )
+                n_d1_8_step = 1;
+
+            n_d1_8_flag = ~n_d1_8_flag;
+
+        end
+
+
+        if( d1_8_step ) begin
+
+            if( d1_4_flag )
+                n_d1_4_step = 1;
+
+            n_d1_4_flag = ~n_d1_4_flag;
+
+        end
+
+
+        if( d1_4_step ) begin
+
+            if( d1_2_flag )
+                n_d1_2_step = 1;
+
+            n_d1_2_flag = ~n_d1_2_flag;
+
+        end
+
+
+        if( d1_2_step ) begin
+
+            if( d1_1_flag )
+                n_d1_1_step = 1;
+
+            n_d1_1_flag = ~n_d1_1_flag;
+
+        end
+
+
+    end
+
+
+end
+
+always_ff @(posedge clk) begin  : pr_d1_ff
+
+    d1_16_step  <= #1 n_d1_16_step;
+    d1_8_step   <= #1 n_d1_8_step;
+    d1_4_step   <= #1 n_d1_4_step;
+    d1_2_step   <= #1 n_d1_2_step;
+    d1_1_step   <= #1 n_d1_1_step;
+
+    
+    if( d1_rstp ) begin
+
+        d1_stp <= #1 '0;
+        d1_temp_counter <= #1 '0;
+        d1_8_flag  <= #1 '0;
+        d1_4_flag  <= #1 '0;
+        d1_2_flag  <= #1 '0;
+        d1_1_flag  <= #1 '0;
+        
+    end else begin
+        
+        d1_stp      <= #1 n_d1_stp;
+        d1_temp_counter <= #1 n_d1_temp_counter;
+        d1_8_flag   <= #1 n_d1_8_flag;
+        d1_4_flag   <= #1 n_d1_4_flag;
+        d1_2_flag   <= #1 n_d1_2_flag;
+        d1_1_flag   <= #1 n_d1_1_flag;
+
+    end
+    
+end
+
 endmodule
