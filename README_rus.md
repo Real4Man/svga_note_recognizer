@@ -1,6 +1,3 @@
-Expanded(
-  child: ,дщ
-)
 # SVGA_NOTE_RECOGNIZER
 
 ## Цель
