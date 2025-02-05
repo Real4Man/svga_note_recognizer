@@ -11,12 +11,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="17.930321161 ms"></ZoomStartTime>
-      <ZoomEndTime time="106.329957162 ms"></ZoomEndTime>
-      <Cursor1Time time="41.801952823 ms"></Cursor1Time>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="476.000000001 ms"></ZoomEndTime>
+      <Cursor1Time time="79.258696000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="262"></NameColumnWidth>
+      <NameColumnWidth column_width="258"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="132" />
@@ -231,10 +231,6 @@
       <obj_property name="ElementShortName">d1_temp_counter[9:0]</obj_property>
       <obj_property name="ObjectShortName">d1_temp_counter[9:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/lab_top/d1_16_step">
-      <obj_property name="ElementShortName">d1_16_step</obj_property>
-      <obj_property name="ObjectShortName">d1_16_step</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/tb/lab_top/d1_8_step">
       <obj_property name="ElementShortName">d1_8_step</obj_property>
       <obj_property name="ObjectShortName">d1_8_step</obj_property>
@@ -327,7 +323,6 @@
    <wvobject type="array" fp_name="/tb/lab_top/d2_distance_collection">
       <obj_property name="ElementShortName">d2_distance_collection[0:63][15:0]</obj_property>
       <obj_property name="ObjectShortName">d2_distance_collection[0:63][15:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb/lab_top/d2_mic_we_z0">
       <obj_property name="ElementShortName">d2_mic_we_z0</obj_property>
@@ -340,6 +335,10 @@
    <wvobject type="array" fp_name="/tb/lab_top/d2_stp">
       <obj_property name="ElementShortName">d2_stp[3:0]</obj_property>
       <obj_property name="ObjectShortName">d2_stp[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/lab_top/d1_16_step">
+      <obj_property name="ElementShortName">d1_16_step</obj_property>
+      <obj_property name="ObjectShortName">d1_16_step</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb/lab_top/d2_recognize_result">
       <obj_property name="ElementShortName">d2_recognize_result[5:0]</obj_property>
