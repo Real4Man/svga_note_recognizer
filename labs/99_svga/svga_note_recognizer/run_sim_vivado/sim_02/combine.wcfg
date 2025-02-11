@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb" />
+            <top_module name="tb_02_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="76.325000 us"></ZoomEndTime>
+      <Cursor1Time time="35.456000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="246"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wave_markers>
+      <marker label="" time="45855795000" />
+      <marker label="" time="45835318000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/tb/note_combine/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/note_combine/reset_p">
+      <obj_property name="ElementShortName">reset_p</obj_property>
+      <obj_property name="ObjectShortName">reset_p</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/d2_recognize_result">
+      <obj_property name="ElementShortName">d2_recognize_result[5:0]</obj_property>
+      <obj_property name="ObjectShortName">d2_recognize_result[5:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/note_combine/d2_recognize_result_step">
+      <obj_property name="ElementShortName">d2_recognize_result_step</obj_property>
+      <obj_property name="ObjectShortName">d2_recognize_result_step</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/d3_note_lenght">
+      <obj_property name="ElementShortName">d3_note_lenght[15:0][2:0]</obj_property>
+      <obj_property name="ObjectShortName">d3_note_lenght[15:0][2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/d3_note_index">
+      <obj_property name="ElementShortName">d3_note_index[15:0][5:0]</obj_property>
+      <obj_property name="ObjectShortName">d3_note_index[15:0][5:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/note_combine/d3_note_step">
+      <obj_property name="ElementShortName">d3_note_step</obj_property>
+      <obj_property name="ObjectShortName">d3_note_step</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/note_combine/rstp">
+      <obj_property name="ElementShortName">rstp</obj_property>
+      <obj_property name="ObjectShortName">rstp</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/d3_stp">
+      <obj_property name="ElementShortName">d3_stp[3:0]</obj_property>
+      <obj_property name="ObjectShortName">d3_stp[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/d3_tack_cnt">
+      <obj_property name="ElementShortName">d3_tack_cnt[3:0]</obj_property>
+      <obj_property name="ObjectShortName">d3_tack_cnt[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/d3_current_lenght">
+      <obj_property name="ElementShortName">d3_current_lenght[15:0][2:0]</obj_property>
+      <obj_property name="ObjectShortName">d3_current_lenght[15:0][2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/d3_current_index">
+      <obj_property name="ElementShortName">d3_current_index[15:0][5:0]</obj_property>
+      <obj_property name="ObjectShortName">d3_current_index[15:0][5:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/n_d3_stp">
+      <obj_property name="ElementShortName">n_d3_stp[3:0]</obj_property>
+      <obj_property name="ObjectShortName">n_d3_stp[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/n_d3_tack_cnt">
+      <obj_property name="ElementShortName">n_d3_tack_cnt[3:0]</obj_property>
+      <obj_property name="ObjectShortName">n_d3_tack_cnt[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/n_current_lenght">
+      <obj_property name="ElementShortName">n_current_lenght[15:0][2:0]</obj_property>
+      <obj_property name="ObjectShortName">n_current_lenght[15:0][2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/note_combine/n_d3_current_index">
+      <obj_property name="ElementShortName">n_d3_current_index[15:0][5:0]</obj_property>
+      <obj_property name="ObjectShortName">n_d3_current_index[15:0][5:0]</obj_property>
+   </wvobject>
+</wave_config>
