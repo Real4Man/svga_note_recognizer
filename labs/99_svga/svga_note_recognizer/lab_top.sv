@@ -358,10 +358,10 @@ always_comb begin   : pr_d1_comb
             if( $signed(mic16) >= $signed(start_level) )
                 n_d1_stp = 1;
         end
-
+  
         
     end
-
+        
     endcase
 
     if( d1_stp ) begin
