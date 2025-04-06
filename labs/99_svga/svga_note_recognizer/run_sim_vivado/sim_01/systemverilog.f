@@ -1,5 +1,7 @@
 ../../../../tb_common/sim_inn441.sv
+../../../../tb_common/sim_svga.sv
 ../../../../../peripherals/inmp441_mic_spi_receiver_65m.sv
+../../../../../peripherals/vga.sv
 ../../../../common/counter_with_enable.sv
 ../../../../common/seven_segment_display.sv
 ../../../../common/shift_reg.sv

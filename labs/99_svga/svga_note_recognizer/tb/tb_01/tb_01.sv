@@ -199,6 +199,14 @@ logic [3:0]         led;
 logic [7:0]         abcdefgh;
 logic [9:0]         digit;
 
+localparam          clk_mhz = 65;
+localparam          w_x = 11;
+localparam          w_y = 10;
+
+logic               display_on;
+logic               hsync;
+logic               vsync;
+
 logic [10:0]        x;
 logic [9:0]         y;
 
@@ -280,7 +288,9 @@ lab_top
     .screen_height  (   768  ),
     .w_red          (   4    ),
     .w_green        (   4    ),
-    .w_blue         (   4    )
+    .w_blue         (   4    ),
+    .w_x            (   w_x  ),
+    .w_y            (   w_y  )
 )
 lab_top
 (
@@ -321,4 +331,69 @@ lab_top
     .gpio
 );
 
+
+
+
+
+vga
+# (
+    .N_MIXER_PIPE_STAGES ( 2 ),
+    .HPOS_WIDTH ( w_x      ),
+    .VPOS_WIDTH ( w_y      ),
+
+    // Horizontal constants
+
+    .H_DISPLAY           ( 1024  ),  // Horizontal display width
+    .H_FRONT             (   24  ),  // Horizontal right border (front porch)
+    .H_SYNC              (  136  ),  // Horizontal sync width
+    .H_BACK              (  160  ),  // Horizontal left border (back porch)
+
+    // Vertical constants
+
+    .V_DISPLAY           (  768  ),  // Vertical display height
+    .V_BOTTOM            (  29   ),  // Vertical bottom border
+    .V_SYNC              (  6    ),  // Vertical sync # lines
+    .V_TOP               (  3    ),  // Vertical top border
+    
+    .CLK_MHZ                (  clk_mhz  ),   // Clock frequency (50 or 100 MHz)
+    .PIXEL_MHZ              (  clk_mhz  )  // Pixel clock of VGA in MHz                
+)
+i_vga
+(
+    .clk         (      clk          ),
+    .rst         (      ~reset_n     ),
+    .hsync       (      hsync        ),
+    .vsync       (      vsync        ),
+    .display_on  (      display_on   ),
+    .hpos        (      x            ),
+    .vpos        (      y            ),
+    .pixel_clk   (                   )
+);
+
+sim_svga 
+# (
+    .clk_mhz            (   clk_mhz ),
+    .screen_width       (   1024    ),
+    .screen_height      (   768     ),
+
+    .w_x                (   w_x     ),
+    .w_y                (   w_y     )
+)
+sim_svga
+(
+    .clk                (   clk     ),
+    .rst                (   ~reset_n), // 1 - reset
+
+    // Graphics
+    .display_on,
+    .x,
+    .y,
+
+    .hsync,
+    .vsync,
+
+    .red,
+    .green,
+    .blue
+);
 endmodule

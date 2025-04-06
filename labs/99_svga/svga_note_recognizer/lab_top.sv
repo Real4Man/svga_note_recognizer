@@ -321,7 +321,8 @@ logic               n_d1_1_flag;
 
 localparam              mic_sample_rate = 48835; // Частота следования отсчётов с микрофона
 localparam              temp_period = 240;       // темп - число ударов в минуту
-localparam [9:0]       temp_1_16_cnt = 763;     // число отсчётов микрофона в 1/16 такта
+//localparam [9:0]       temp_1_16_cnt = 763;     // число отсчётов микрофона в 1/16 такта
+localparam [9:0]       temp_1_16_cnt = (60/temp_period/16)*mic_sample_rate;     // число отсчётов микрофона в 1/16 такта
 
 localparam [15:0]       start_level = 16'd80;
 

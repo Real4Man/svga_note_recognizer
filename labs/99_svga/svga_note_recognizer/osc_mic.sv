@@ -17,8 +17,8 @@ module osc_mic
     input   wire [15:0]     threshold,
 
 
-    input   wire [11:0]     x,
-    input   wire [10:0]     y,
+    input   wire [10:0]     x,
+    input   wire [9:0]      y,
     output  wire [3:0]      vga_r,
     output  wire [3:0]      vga_g,
     output  wire [3:0]      vga_b,
